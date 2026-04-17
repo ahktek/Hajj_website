@@ -1,29 +1,19 @@
 @import "tailwindcss";
+@import "../styles/spiritual-theme.css";
 
 @theme inline {
-  /*
-   * ==========================================
-   * DESIGN SYSTEM COLORS
-   * Theme: Traditional, Spiritual, Premium
-   * ==========================================
-   */
+  --color-emerald-300: #6EE7B7;
+  --color-emerald-800: #065F46;
+  --color-emerald-900: #064E3B;
+  --color-gold-300: #F3DA7E;
+  --color-gold-400: #E5C100;
+  --color-gold-500: #D4AF37;
+  --color-gold-600: #B5952F;
+  --color-off-white: #F0F0F0;
+  
   --color-brand-green-50: #f0fdf4;
-  --color-brand-green-100: #dcfce7;
-  --color-brand-green-200: #bbf7d0;
-  --color-brand-green-300: #86efac;
-  --color-brand-green-400: #4ade80;
-  --color-brand-green-500: #22c55e;
-  --color-brand-green-600: #16a34a;
-  --color-brand-green-700: #15803d;
-  --color-brand-green-800: #166534;
-  --color-brand-green-900: #0f5132; /* Primary Deep Green */
-  --color-brand-green-950: #062c1b;
-
-  --color-brand-gold-300: #f3da7e;
-  --color-brand-gold-400: #e6c200;
-  --color-brand-gold-500: #d4af37; /* Primary Gold Accent */
-  --color-brand-gold-600: #b5952f;
-  --color-brand-gold-700: #917725;
+  --color-brand-green-900: #064E3B;
+  --color-brand-gold-500: #D4AF37;
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -32,56 +22,27 @@
 }
 
 :root {
-  --background: #ffffff;
-  --foreground: #1e293b; /* Slate 800 */
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0f172a; /* Slate 900 */
-    --foreground: #f8fafc; /* Slate 50 */
-  }
+  --background: #F0F0F0;
+  --foreground: #064E3B;
 }
 
 body {
   background-color: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
+  overflow-x: hidden;
 }
 
-/*
- * ==========================================
- * UTILITY COMPONENTS (Modular CSS)
- * ==========================================
- * Use these classes throughout the app for consistent styling
- * and to avoid repetitive Tailwind strings.
- */
-
 @layer components {
-  /* Buttons */
   .btn-primary {
-    @apply bg-brand-green-900 text-white hover:bg-brand-green-800 focus:ring-4 focus:ring-brand-green-300 font-medium rounded-lg text-sm px-5 py-2.5 focus:outline-none transition-colors duration-200 ease-in-out;
+    @apply bg-emerald-900 text-white hover:bg-emerald-800 focus:ring-4 focus:ring-emerald-300 font-medium rounded-lg text-sm px-5 py-2.5 focus:outline-none transition-all duration-300 ease-in-out;
   }
   
   .btn-secondary {
-    @apply bg-brand-gold-500 text-brand-green-950 hover:bg-brand-gold-400 focus:ring-4 focus:ring-brand-gold-300 font-medium rounded-lg text-sm px-5 py-2.5 focus:outline-none transition-colors duration-200 ease-in-out;
+    @apply bg-gold-500 text-emerald-900 hover:bg-gold-400 focus:ring-4 focus:ring-gold-300 font-medium rounded-lg text-sm px-5 py-2.5 focus:outline-none transition-all duration-300 ease-in-out;
   }
 
-  .btn-outline {
-    @apply text-brand-green-900 bg-transparent border border-brand-green-900 hover:bg-brand-green-50 focus:ring-4 focus:ring-brand-green-300 font-medium rounded-lg text-sm px-5 py-2.5 focus:outline-none transition-colors duration-200 ease-in-out;
-  }
-
-  /* Form Elements */
-  .input-field {
-    @apply bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-brand-green-500 focus:border-brand-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-brand-green-500 dark:focus:border-brand-green-500 transition-all duration-200;
-  }
-  
-  .input-label {
-    @apply block mb-2 text-sm font-medium text-gray-900 dark:text-white;
-  }
-
-  /* Cards */
   .card-container {
-    @apply bg-white border border-gray-200 rounded-xl shadow-md dark:bg-gray-800 dark:border-gray-700 overflow-hidden transition-shadow duration-300 hover:shadow-lg;
+    @apply bg-white border border-gray-200 rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg;
   }
 }

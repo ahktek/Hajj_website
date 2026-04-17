@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/ui/Navbar";
+import BottomDock from "@/components/ui/BottomDock";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -73,9 +74,10 @@ export default function RootLayout({
         <main className="flex-grow">
           {children}
         </main>
-        <footer className="bg-brand-green-950 text-white py-8 text-center mt-auto">
+        <footer className="bg-brand-green-950 text-white py-12 pb-24 md:pb-12 text-center mt-auto">
           <p>&copy; {new Date().getFullYear()} Al Haramain Hajj. All rights reserved.</p>
         </footer>
+        <BottomDock />
       </body>
     </html>
   );
