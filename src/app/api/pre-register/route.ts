@@ -32,13 +32,41 @@ export async function POST(request: Request) {
     const smsMsg = `Dear ${fullName}, your pre-registration for Hajj (${packageSlug} package) is received. Invoice: ${invoice.invoiceId}.`;
     await SmsService.sendConfirmationSms(phone, smsMsg);
 
-    // 4. Ideally, save to DB using Prisma here
-    // await db.preRegistration.create({ ... })
+    // 4. Save to DB using Prisma
+    const lead = await db.preRegistration.create({
+      data: {
+        passportNumber: passport,
+        nidNumber: nid,
+        status: 'PENDING',
+        user: {
+          connectOrCreate: {
+            where: { phone: phone },
+            create: {
+              name: fullName,
+              phone: phone,
+              role: 'CUSTOMER',
+            }
+          }
+        },
+        package: {
+          connectOrCreate: {
+            where: { slug: packageSlug },
+            create: {
+              name: packageSlug.toUpperCase(),
+              slug: packageSlug,
+              description: `Hajj ${packageSlug} package`,
+              price: amount,
+            }
+          }
+        }
+      }
+    });
 
     return NextResponse.json({ 
       success: true, 
       message: "Pre-registration successful",
-      invoice: invoice
+      invoice: invoice,
+      id: lead.id
     });
   } catch (error) {
     console.error("API Error:", error);

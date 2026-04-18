@@ -9,10 +9,12 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Name and phone are required' }, { status: 400 });
     }
 
-    // BD Phone validation
+    // Clean and validate BD phone number
+    const cleanPhone = phone.replace(/^\+88/, '').replace(/\s+/g, '');
     const phoneRegex = /^01[3-9]\d{8}$/;
-    if (!phoneRegex.test(phone)) {
-      return NextResponse.json({ error: 'Invalid BD phone format' }, { status: 400 });
+    
+    if (!phoneRegex.test(cleanPhone)) {
+      return NextResponse.json({ error: 'Invalid BD phone format (Expected: 01XXXXXXXXX)' }, { status: 400 });
     }
 
     // Save lead to database
