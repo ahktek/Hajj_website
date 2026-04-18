@@ -27,10 +27,19 @@ export default function PreRegForm() {
     setStatus("submitting");
 
     try {
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      setStatus("success");
+      const response = await fetch('/api/pre-register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setStatus("success");
+      } else {
+        setStatus("error");
+      }
     } catch (error) {
-      console.error(error);
+      console.error('Registration error:', error);
       setStatus("error");
     }
   };
